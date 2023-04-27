@@ -1,0 +1,134 @@
+{% extends 'user/common/layout.html' %}
+{%load static%}
+
+{% block content %}
+<div class="container" >
+    <div class="row">
+    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+    
+     <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-lg-8"style="margin-top: 40px; margin-bottom: 40px; padding-bottom: 20px; background-color: lightgray;">
+      <div class="p-5">
+          <div class="text-center">
+              <h1 class=" text-gray-900 mb-4" style="padding: 30px;">Registration</h1>
+          </div>
+          <form class="user" method="post" action="/user/store_profile/">
+            {% csrf_token %}
+              <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0" >
+                    <input type="text" class="form-control  form-control-user" id="fname" name="fname"
+                        placeholder="First name" required>
+                </div>
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user" id="lname" name="lname"
+                        placeholder="last name"required>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="username" name="username"
+                    placeholder="User name" required>
+              </div>
+              <div class="form-group">
+                  <input type="email" class="form-control form-control-user" id="email" name="email"
+                      placeholder="Email Address" required>
+              </div>
+              <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input type="date" class="form-control form-control-user" id="dob" name="dob" 
+                          placeholder="Date Of Birth" required>
+                  </div>
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input type="text" class="form-control form-control-user" id="contact" name="contact"
+                          placeholder="Contact Number" pattern="[789][0-9]{9}" required >
+
+                          <!-- "[789][0-9]{9} " -->
+                  </div>
+              </div>
+              <div class="form-group row">
+                 
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label for="area"name="area" id="area" required>  </label>
+                      <select name="area" id="area" class="form-control form-control-user">
+                           <option value="">--Select Area--</option>
+                                    {% for a in area %}
+                                        <option value="{{a.id}}">{{a.area_name}}</option>
+                                    {% endfor %}
+                      </select>
+                  </div>
+                   <div class="col-sm-6 mb-3 mb-sm-0 ">
+    
+                  </div>
+              </div>
+              
+              <div class="form-group row">
+                  <div class="col-sm-12 mb-3 mb-sm-0">
+                      <textarea name="address" id="address" cols="127" class="form-control form-control-user" placeholder="Address" required></textarea>
+                  </div>
+              </div>
+           <!--  <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0 ">
+                    <input type="text" class="form-control form-control-user"
+                          id="rel_name1" name="rel_name1" placeholder="Relative's name" required >
+                </div>
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user"
+                          id="rel_num1" name="rel_num1" placeholder="Relative's number" required  pattern="[789][0-9]{9}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0 ">
+                    <input type="text" class="form-control form-control-user"
+                          id="rel_name2" name="rel_name2" placeholder="Relative's name" required>
+                </div>
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user"
+                          id="rel_num2" name="rel_num2" placeholder="Relative's number" required  pattern="[789][0-9]{9}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0 ">
+                    <input type="text" class="form-control form-control-user"
+                          id="rel_name3" name="rel_name3" placeholder="Relative's name" required>
+                </div>
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user"
+                          id="rel_num3" name="rel_num3" placeholder="Relative's number" required  pattern="[789][0-9]{9}">
+                </div>
+            </div>
+            -->
+              <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input type="password" class="form-control form-control-user"
+                          id="password"  name="password" placeholder="Password" required pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{6,}$">
+                  </div>
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input type="password" class="form-control form-control-user"
+                      id="cpassword"  name="cpassword" placeholder="Confirm Password" required pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{6,}$">
+                  </div>
+              </div>
+              <center>
+                <div class="text-md-left col-md-12">
+                    <button type="submit"  name="submit" id="submit" class="btn-one" style="background-color: #9f280c; padding: 10px; margin-bottom:20px">Register</button>   
+                  </div>    
+              </center>
+             
+          </form>
+          
+      </div>
+  </div>
+  </div>
+</div>
+<!-- /.container-fluid -->
+
+</div>
+
+
+
+{%endblock%}

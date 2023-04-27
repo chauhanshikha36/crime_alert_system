@@ -1,0 +1,37 @@
+{% extends 'user/common/layout.html' %}
+{%load static%}
+
+{% block content %}
+ 
+  <!-- Barrister Inner page Wrapper Start -->
+  <div class="inner-page-wrapper blog-wrapper">
+    <div class="container">
+      <div class="row">
+        {% for p in posts %}
+        <div class="col-sm-4">
+          <div class="blog-box">
+            <div class="blog-img"> <img src="/media/post/{{p.file_name}}" alt="" height="200px" width="100px">
+              <div class="publisd-date">
+                <h4>{{p.p_date}}</h4>
+              </div>
+            </div>
+            <div class="blog-caption">
+              <ul>
+                <li><i class="fa fa-user" aria-hidden="true"></i><a href="/user/show_profile/{{p.user_id}}">{{p.user.first_name}} {{p.user.last_name}}</a></li>
+                <li>|</li>
+                <li><i class="fa fa-comments-o" aria-hidden="true"></i><a href="/user/post_details/{{p.id}}">{{total}} Comments</a></li>|
+                <li><span><i class="fa fa-thumbs-up" aria-hidden="true" onclick="return like_func({{p.id}})"></i>{% for k, v in arr.items %} {% if k == p %} {{v.0}}{% endif %}  {% endfor %}</span>
+                  </li>
+                 <li><span><i class="fa fa-thumbs-down" aria-hidden="true" onclick="return dis_like({{p.id}})" ></i>{% for k, v in arr.items %} {% if k == p %} {{v.1}}{% endif %}  {% endfor %}</span></li>
+
+                 <li><a href="/user/store_report/{{p.id}}"> RAISE ISSUE</a>  </li>
+              </ul>
+              <p>{{p.post_description}}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {%endblock%}
